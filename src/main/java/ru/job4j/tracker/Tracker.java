@@ -41,7 +41,7 @@ public class Tracker {
         int count = 0;
         Item[] result = new Item[size];
         for (int i = 0; i < items.length; i++) {
-            if (key == items[i].getName()) {
+            if (key.equals(items[i].getName())) {
                 result[count] = items[i];
                 count++;
             }
