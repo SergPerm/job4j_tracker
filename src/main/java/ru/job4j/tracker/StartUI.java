@@ -8,90 +8,80 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu();
-            print("Select: ");
-            int select = Integer.valueOf(scanner.nextLine());
+            System.out.print("Select: ");
+            int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
-                println("=== Create a new Item ====");
-                print("Enter name: ");
+                System.out.println("=== Create a new Item ====");
+                System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
             } else if (select == 1) {
-                println("=== Show all items ====");
+                System.out.println("=== Show all items ====");
                 Item[] items = tracker.findAll();
-                showArray(items);
+                for (Item it : items) {
+                    System.out.println(it);
+                }
             } else if (select == 2) {
-                println("=== Edit Item ====");
-                print("Enter id for edit : ");
+                System.out.println("=== Edit Item ====");
+                System.out.print("Enter id for edit : ");
                 int id = Integer.parseInt(scanner.nextLine());
-                print("Enter new name : ");
+                System.out.print("Enter new name : ");
                 String name = scanner.nextLine();
                 if (tracker.replace(id, new Item(name))) {
-                    println("Edit successfully");
+                    System.out.println("Edit successfully");
                 } else {
-                    println("Error. Wrong id :" + id);
+                    System.out.println("Error. Wrong id :" + id);
                 }
             } else if (select == 3) {
-                println("=== Delete Item ====");
-                print("Enter id for delete : ");
+                System.out.println("=== Delete Item ====");
+                System.out.print("Enter id for delete : ");
                 int id = Integer.parseInt(scanner.nextLine());
                 if (tracker.delete(id)) {
-                    println("Delete successfully");
+                    System.out.println("Delete successfully");
                 } else {
-                    println("Error. Wrong id :" + id);
+                    System.out.println("Error. Wrong id :" + id);
                 }
             } else if (select == 4) {
-                println("=== Find Item by Id ====");
-                print("Enter id for search : ");
+                System.out.println("=== Find Item by Id ====");
+                System.out.print("Enter id for search : ");
                 int id = Integer.parseInt(scanner.nextLine());
                 Item rsl = tracker.findById(id);
                 if (rsl != null) {
-                    println(rsl.toString());
+                    System.out.println(rsl.toString());
                 } else {
-                    println("Заявка с таким id не найдена");
+                    System.out.println("Заявка с таким id не найдена");
                 }
             } else if (select == 5) {
-                println("=== Find Items by name ====");
-                print("Enter name: ");
+                System.out.println("=== Find Items by name ====");
+                System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item[] rsl = tracker.findByName(name);
                 if (rsl.length > 0) {
-                    showArray(rsl);
+                    for (Item it : rsl) {
+                        System.out.println(it);
+                    }
                 } else {
-                    println("Заявки с таким именем не найдены");
+                    System.out.println("Заявки с таким именем не найдены");
                 }
             } else if (select == 6) {
-                println("=== good bay ====");
+                System.out.println("=== good bay ====");
                 run = false;
             } else {
-                println("Такой команды нет, попробуйте снова");
+                System.out.println("Такой команды нет, попробуйте снова");
             }
         }
     }
 
     private void showMenu() {
-        println("Menu:\n"
-                + "0. Add new Item\n"
-                + "1. Show all items\n"
-                + "2. Edit item\n"
-                + "3. Delete item\n"
-                + "4. Find item by Id\n"
-                + "5. Find items by name\n"
+        System.out.println("Menu:" + System.lineSeparator()
+                + "0. Add new Item" + System.lineSeparator()
+                + "1. Show all items" + System.lineSeparator()
+                + "2. Edit item" + System.lineSeparator()
+                + "3. Delete item" + System.lineSeparator()
+                + "4. Find item by Id" + System.lineSeparator()
+                + "5. Find items by name" + System.lineSeparator()
                 + "6. Exit Program");
-    }
-
-    private void print(String s) {
-        System.out.print(s);
-    }
-
-    private void println(String str) {
-        System.out.println(str);
-    }
-
-    private void showArray(Item[] arrayShow) {
-        for (Item it : arrayShow) {
-            println(it.toString());
-        }
     }
 
     public static void main(String[] args) {
