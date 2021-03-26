@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
-    public static void init(Input input, Tracker tracker) {
+    public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
             showMenu();
@@ -88,20 +88,21 @@ public class StartUI {
         tracker.add(item);
     }
 
-    private static void showMenu() {
-        System.out.println("Menu:" + System.lineSeparator()
-                + "0. Add new Item" + System.lineSeparator()
-                + "1. Show all items" + System.lineSeparator()
-                + "2. Edit item" + System.lineSeparator()
-                + "3. Delete item" + System.lineSeparator()
-                + "4. Find item by Id" + System.lineSeparator()
-                + "5. Find items by name" + System.lineSeparator()
+    private void showMenu() {
+        String ln = System.lineSeparator();
+        System.out.println("Menu:" + ln
+                + "0. Add new Item" + ln
+                + "1. Show all items" + ln
+                + "2. Edit item" + ln
+                + "3. Delete item" + ln
+                + "4. Find item by Id" + ln
+                + "5. Find items by name" + ln
                 + "6. Exit Program");
     }
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        StartUI.init(input, tracker);
+        new StartUI().init(input, tracker);
     }
 }
