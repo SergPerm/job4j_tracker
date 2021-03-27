@@ -7,15 +7,17 @@ public class StartUI {
         this.out = out;
     }
 
-
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
             showMenu(actions);
             int select = input.askInt("Select: ");
+            if (select < 0 || select >= actions.length) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+                continue;
+            }
             UserAction action = actions[select];
             run = action.execute(input, tracker);
-//                System.out.println("Такой команды нет, попробуйте снова");
         }
     }
 
@@ -28,7 +30,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(out),
