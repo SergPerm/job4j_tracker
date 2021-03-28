@@ -21,10 +21,10 @@ public class ValidateInput implements Input {
         do {
             try {
                 value = in.askInt(question);
-                if (value < 0) {
-                    out.println("Please enter validate data again.");
-                    continue;
-                }
+//                if (value < 0) {
+//                    out.println("Please enter validate data again.");
+//                    continue;
+//                }
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 out.println("Please enter validate data again.");
