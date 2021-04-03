@@ -7,12 +7,11 @@ public class ConvertList2Array {
         int groups = (int) Math.ceil((double) list.size() / cells);
         System.out.println(groups);
         int[][] array = new int[groups][cells];
-        int row = 0, cell = 0, count = 0;
+        int row = 0, cell = 0;
         for (Integer num : list) {
             array[row][cell] = num;
             cell++;
-            count++;
-            if (count % cells == 0) {
+            if (cell == cells) {
                 row++;
                 cell = 0;
             }
