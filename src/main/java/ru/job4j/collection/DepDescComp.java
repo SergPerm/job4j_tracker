@@ -9,20 +9,17 @@ public class DepDescComp implements Comparator<String> {
         String[] catalog1 = o1.split("/", 2);
         String[] catalog2 = o2.split("/", 2);
 
+        int result = catalog2[0].compareTo(catalog1[0]);
+        return result != 0 ? result : o1.compareTo(o2);
+    }
+
 //        int result = catalog2[0].compareTo(catalog1[0]);
 //        if (result != 0) {
 //            return result;
-//        } else  {
+//        } else if (catalog1.length > 1 && catalog2.length > 1) {
 //            return catalog1[1].compareTo(catalog2[1]);
+//            } else {
+//            return catalog1.length > catalog2.length ? 1 : -1;
 //        }
-
-        int result = catalog2[0].compareTo(catalog1[0]);
-        if (result != 0) {
-            return result;
-        } else if (catalog1.length > 1 && catalog2.length > 1) {
-            return catalog1[1].compareTo(catalog2[1]);
-            } else {
-            return catalog1.length > catalog2.length ? 1 : -1;
-        }
-    }
+//    }
 }
