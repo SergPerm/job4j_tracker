@@ -24,7 +24,7 @@ public class BankService {
      * @param user новый пользователь
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<>())
+        users.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
