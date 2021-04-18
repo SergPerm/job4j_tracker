@@ -2,19 +2,19 @@ package ru.job4j.stream;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class ProfilesTest {
 
     @Test
     public void whenCollectProfileToAddress() {
         List<Profile> recourse = List.of(
-                new Profile(new Address("Perm")),
-                new Profile(new Address("Bryansk"))
+                new Profile(new Address("Perm", "motor", 7, 2)),
+                new Profile(new Address("Bryansk", "requi", 4, 1))
         );
         Profiles profiles = new Profiles();
         List<Address> rsl = profiles.collect(recourse);
@@ -24,10 +24,10 @@ public class ProfilesTest {
     @Test
     public void whenSortCollectProfileToAddress() {
         List<Profile> recourse = List.of(
-                new Profile(new Address("Perm")),
-                new Profile(new Address("Bryansk")),
-                new Profile(new Address("Perm")),
-                new Profile(new Address("Bryansk"))
+                new Profile(new Address("Perm", "motor", 7, 2)),
+                new Profile(new Address("Bryansk", "requi", 4, 1)),
+                new Profile(new Address("Perm", "motor", 7, 2)),
+                new Profile(new Address("Bryansk", "requi", 4, 1))
         );
         Profiles profiles = new Profiles();
         List<Address> rsl = profiles.sortCollect(recourse);
