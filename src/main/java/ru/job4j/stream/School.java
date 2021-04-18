@@ -13,9 +13,10 @@ public class School {
 
     public Map<String, Student> transformListToMap(List<Student> students) {
         return students.stream()
-                .distinct()
+//                .distinct()
                 .collect(Collectors.toMap(
                         student -> student.getSurname(),
-                        student -> student));
+                        student -> student,
+                        (student1, student2) -> student1.equals(student2) ? student1 : student2));
     }
 }
