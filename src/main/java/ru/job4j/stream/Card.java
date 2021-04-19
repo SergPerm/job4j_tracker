@@ -27,7 +27,7 @@ public class Card {
 
     public static void main(String[] args) {
         List<Card> cards = Card.generatedCard();
-        cards.stream().forEach(System.out::println);
+        cards.forEach(System.out::println);
 
     }
 }
