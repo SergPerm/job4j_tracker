@@ -55,8 +55,8 @@ public class AnalyzeTest {
             ).stream()
         );
         assertThat(average, is(List.of(
-                new Tuple("Lang", 80D),
-                new Tuple("Math", 90D) // поменял порядок вывода?!
+                new Tuple("Math", 90D),
+                new Tuple("Lang", 80D)
         )));
     }
 
