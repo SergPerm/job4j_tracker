@@ -16,17 +16,21 @@ public class EasyStream {
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
-        ListIterator<Integer> listIterator = tmp.listIterator();
-            while (listIterator.hasNext()) {
-                Integer element = listIterator.next();
-                listIterator.set(fun.apply(element));
-            }
-            return this;
+        List<Integer> rsl = new ArrayList<>();
+        for (Integer element : tmp) {
+            rsl.add(fun.apply(element));
+        }
+        return new EasyStream(new ArrayList<>(rsl));
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
-        tmp.removeIf(element -> !fun.test(element));
-        return this;
+        List<Integer> rsl = new ArrayList<>();
+        for (Integer element : tmp) {
+            if (fun.test(element)) {
+                rsl.add(element);
+            }
+        }
+        return new EasyStream(new ArrayList<>(rsl));
     }
 
     public List<Integer> collect() {
