@@ -20,7 +20,7 @@ public class EasyStream {
         for (Integer element : tmp) {
             rsl.add(fun.apply(element));
         }
-        return new EasyStream(new ArrayList<>(rsl));
+        return new EasyStream(rsl);
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
@@ -30,10 +30,10 @@ public class EasyStream {
                 rsl.add(element);
             }
         }
-        return new EasyStream(new ArrayList<>(rsl));
+        return new EasyStream(rsl);
     }
 
     public List<Integer> collect() {
-            return new ArrayList<>(tmp);
+            return List.copyOf(tmp);
     }
 }
