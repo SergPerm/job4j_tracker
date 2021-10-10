@@ -13,11 +13,11 @@ public class EditAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, MemTracker memTracker) {
         out.println("=== Edit Item ====");
         int id = input.askInt("Enter id for edit : ");
         String name = input.askStr("Enter new name : ");
-        if (tracker.replace(id, new Item(name))) {
+        if (memTracker.replace(id, new Item(name))) {
             out.println("Edit successfully");
         } else {
             out.println("Error. Wrong id :" + id);

@@ -11,11 +11,14 @@ public class School {
         return students.stream().filter(predict).collect(Collectors.toList());
     }
 
+    /**
+     * distinct() можно убрать в комментарий
+     */
     public Map<String, Student> transformListToMap(List<Student> students) {
         return students.stream()
-//                .distinct()
+                .distinct()
                 .collect(Collectors.toMap(
-                        student -> student.getSurname(),
+                        Student::getSurname,
                         student -> student,
                         (student1, student2) -> student1));
     }
