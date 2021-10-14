@@ -74,7 +74,7 @@ public class StartUITest {
                         + "Menu." + ln
                         + "0. Find Item by Id" + ln
                         + "1. Exit" + ln
-                        + "=== good bay ====" + ln;
+                        + "=== good bye ====" + ln;
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(id), "1"}
         );
@@ -99,7 +99,7 @@ public class StartUITest {
                         + "Menu." + ln
                         + "0. Show all items" + ln
                         + "1. Exit" + ln
-                        + "=== good bay ====" + ln;
+                        + "=== good bye ====" + ln;
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -125,7 +125,7 @@ public class StartUITest {
                         + "Menu." + ln
                         + "0. Find Item by Name" + ln
                         + "1. Exit" + ln
-                        + "=== good bay ====" + ln;
+                        + "=== good bye ====" + ln;
         Input in = new StubInput(
                 new String[] {"0", name, "1"}
         );
@@ -153,7 +153,7 @@ public class StartUITest {
                         + "Wrong input, you can select: 0 .. 0" + ln
                         + "Menu." + ln
                         + "0. Exit" + ln
-                        + "=== good bay ====" + ln
+                        + "=== good bye ====" + ln
                 )
         );
     }
