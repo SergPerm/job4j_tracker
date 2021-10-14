@@ -13,8 +13,8 @@ public class ExitAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, MemTracker memTracker) {
-        out.println("=== good bay ====");
+    public boolean execute(Input input, Store store) {
+        out.println("=== good bye ====");
         return false;
     }
 }

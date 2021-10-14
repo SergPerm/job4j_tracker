@@ -10,7 +10,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, MemTracker memTracker, List<UserAction> actions) {
+    public void init(Input input, Store store, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             showMenu(actions);
@@ -20,7 +20,7 @@ public class StartUI {
                 continue;
             }
             UserAction action = actions.get(select);
-            run = action.execute(input, memTracker);
+            run = action.execute(input, store);
         }
     }
 
@@ -36,15 +36,19 @@ public class StartUI {
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
         Input input = new ValidateInput(out, new ConsoleInput());
-        MemTracker memTracker = new MemTracker();
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new CreateAction(out));
-        actions.add(new ShowItemsAction(out));
-        actions.add(new EditAction(out));
-        actions.add(new FindItemByIDAction(out));
-        actions.add(new FindItemByNameAction(out));
-        actions.add(new DeleteAction(out));
-        actions.add(new ExitAction(out));
-        new StartUI(out).init(input, memTracker, actions);
+        try (Store tracker = new SqlTracker())  {
+            tracker.init();
+            List<UserAction> actions = new ArrayList<>();
+            actions.add(new CreateAction(out));
+            actions.add(new ShowItemsAction(out));
+            actions.add(new EditAction(out));
+            actions.add(new FindItemByIDAction(out));
+            actions.add(new FindItemByNameAction(out));
+            actions.add(new DeleteAction(out));
+            actions.add(new ExitAction(out));
+            new StartUI(out).init(input, tracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

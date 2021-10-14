@@ -8,35 +8,35 @@ import static org.junit.Assert.assertThat;
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        MemTracker memTracker = new MemTracker();
+        Store store = new MemTracker();
         Item item = new Item();
         item.setName("test1");
-        memTracker.add(item);
-        Item result = memTracker.findById(item.getId());
+        store.add(item);
+        Item result = store.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
     }
 
     @Test
     public void whenReplace() {
-        MemTracker memTracker = new MemTracker();
+        Store store = new MemTracker();
         Item bug = new Item();
         bug.setName("Bug");
-        memTracker.add(bug);
+        store.add(bug);
         int id = bug.getId();
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
-        memTracker.replace(id, bugWithDesc);
-        assertThat(memTracker.findById(id).getName(), is("Bug with description"));
+        store.replace(id, bugWithDesc);
+        assertThat(store.findById(id).getName(), is("Bug with description"));
     }
 
     @Test
     public void whenDelete() {
-        MemTracker memTracker = new MemTracker();
+        Store store = new MemTracker();
         Item bug = new Item();
         bug.setName("Bug");
-        memTracker.add(bug);
+        store.add(bug);
         int id = bug.getId();
-        memTracker.delete(id);
-        assertThat(memTracker.findById(id), is(nullValue()));
+        store.delete(id);
+        assertThat(store.findById(id), is(nullValue()));
     }
 }
