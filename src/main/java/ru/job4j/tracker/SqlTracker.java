@@ -8,7 +8,6 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
     private Connection cn;
-    private String sql;
 
     @Override
     public void init() {
@@ -48,25 +47,47 @@ public class SqlTracker implements Store {
 
     @Override
     public Item findById(int id) {
-        sql = String.format("select * from items where id = %s", id);
-        return getItems(sql).get(0);
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items where id = ?")) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Item tmp = new Item(resultSet.getString("name"));
+                    tmp.setId(resultSet.getInt("id"));
+                    tmp.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    return tmp;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public List<Item> findAll() {
-        sql = "select * from items";
-        return getItems(sql);
+        List<Item> items = new ArrayList<>();
+        try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Item tmp = new Item(resultSet.getString("name"));
+                    tmp.setId(resultSet.getInt("id"));
+                    tmp.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    items.add(tmp);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return items;
     }
 
     @Override
     public List<Item> findByName(String key) {
-        sql = String.format("select * from items where name like '%s'", key);
-        return getItems(sql);
-    }
-
-    private List<Item> getItems(String sql) {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement statement = cn.prepareStatement(sql)) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items where name like '?'")) {
+            statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Item tmp = new Item(resultSet.getString("name"));
