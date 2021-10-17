@@ -86,7 +86,7 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement =
-                     cn.prepareStatement("select * from items where name like '?'")) {
+                     cn.prepareStatement("select * from items where name like ?")) {
             statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -135,5 +135,9 @@ public class SqlTracker implements Store {
         if (cn != null) {
             cn.close();
         }
+    }
+
+    public void init(Connection connection) {
+        cn = connection;
     }
 }
