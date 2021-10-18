@@ -49,16 +49,14 @@ public class SqlTrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasThisItem() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item = new Item("item");
          assertThat(tracker.add(item), is(item));
     }
 
     @Test
     public void whenFindByIdThenGetItemWithThisId() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         assertThat(tracker.findById(item.getId()), is(item));
@@ -66,8 +64,7 @@ public class SqlTrackerTest {
 
     @Test
     public void findAll() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item1 = new Item("Serg");
         tracker.add(item1);
         Item item2 = new Item("Petr");
@@ -79,8 +76,7 @@ public class SqlTrackerTest {
 
     @Test
     public void findByName() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item = new Item("Lana");
         tracker.add(item);
         Item item1 = new Item("Serg");
@@ -94,8 +90,7 @@ public class SqlTrackerTest {
 
     @Test
     public void replace() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item = new Item("Item");
         tracker.add(item);
         int id = item.getId();
@@ -106,8 +101,7 @@ public class SqlTrackerTest {
 
     @Test
     public void whenDeleteIdThenTrackerFindByIdGetNull() {
-        SqlTracker tracker = new SqlTracker();
-        tracker.init(connection);
+        Store tracker = new SqlTracker(connection);
         Item item = new Item("Item");
         tracker.add(item);
         int id = item.getId();
