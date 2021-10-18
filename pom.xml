@@ -23,7 +23,6 @@
                 <db.driver>org.h2.Driver</db.driver>
                 <db.username></db.username>
                 <db.password></db.password>
-                <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -147,6 +146,7 @@
                     <driver>${db.driver}</driver>
                     <username>${db.username}</username>
                     <password>${db.password}</password>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
                 <executions>
                     <execution>
