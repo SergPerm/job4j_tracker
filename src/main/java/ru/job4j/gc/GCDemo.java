@@ -21,7 +21,6 @@ public class GCDemo {
         for (int i = 0; i < 4000; i++) {
             new GCUser("Alex" + i, "Sasha" + i);
         }
-//       System.gc();
         info();
     }
 }
