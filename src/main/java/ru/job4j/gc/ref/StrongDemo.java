@@ -32,7 +32,7 @@ public class StrongDemo {
         Object[] objects = new Object[100];
         for (int i = 0; i < 100; i++) {
             Object object = new Object() {
-                final Object innerObject = new Object() {
+                private final Object innerObject = new Object() {
                     @Override
                     protected void finalize() throws Throwable {
                         System.out.println("Remove inner object!");
