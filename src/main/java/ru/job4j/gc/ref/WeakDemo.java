@@ -41,6 +41,7 @@ public class WeakDemo {
         System.gc();
         TimeUnit.SECONDS.sleep(3);
     }
+
     private static void example3() throws InterruptedException {
         Object object = new Object() {
             @Override
@@ -58,7 +59,7 @@ public class WeakDemo {
 
         TimeUnit.SECONDS.sleep(3);
         System.out.println("from link " + weak.get());
-        WeakReference weakFromPoll = (WeakReference)queue.poll();
+        WeakReference weakFromPoll = (WeakReference) queue.poll();
         System.out.println("weak from queue " + weakFromPoll);
     }
 }
