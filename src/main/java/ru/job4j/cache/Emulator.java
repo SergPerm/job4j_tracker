@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Emulator {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private Cache<String, String> cache;
 
     public static void main(String[] args) {
@@ -26,9 +26,9 @@ public class Emulator {
      */
     private void downloadContentFileToCache() {
         System.out.println("введите имя файла для загрузки содержимого файла в кэш : ");
-        String filename = scanner.nextLine();
+        String filename = sc.nextLine();
         System.out.println("введите содержимого файла для загрузки в кэш : ");
-        String fileContent = scanner.nextLine();
+        String fileContent = sc.nextLine();
         this.cache.put(filename, fileContent);
     }
 
@@ -38,7 +38,7 @@ public class Emulator {
 
     private void extractedFromCache() {
         System.out.println("введите имя файла для получения содержимого файла из кэш : ");
-        System.out.println(this.cache.get(scanner.nextLine()));
+        System.out.println(this.cache.get(sc.nextLine()));
     }
 
     /**
@@ -47,7 +47,7 @@ public class Emulator {
      */
     private void createCache() {
         System.out.println("введите путь к директории с текстовыми файлами для их кеширования  : ");
-        String cacheDir = scanner.nextLine();
+        String cacheDir = sc.nextLine();
         cache = new DirFileCache(cacheDir);
     }
 }
