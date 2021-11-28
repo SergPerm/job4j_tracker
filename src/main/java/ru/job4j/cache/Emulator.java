@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Emulator {
-    private static final Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
     private Cache<String, String> cache;
 
     public static void main(String[] args) {
