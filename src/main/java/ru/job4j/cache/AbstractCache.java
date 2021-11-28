@@ -4,28 +4,22 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractCache<K, V> implements Cache<K, V> {
+public abstract class AbstractCache<K, V> {
 
     private final Map<K, SoftReference<V>> cache = new HashMap<>();
 
-    @Override
     public void put(K key, V value) {
         SoftReference<V> ref = new SoftReference<>(value);
         cache.put(key, ref);
     }
 
-    @Override
     public V get(K key) {
-        SoftReference<V> softRef;
-        if (!cache.containsKey(key)) {
-            put(key, load(key));
+        V value = cache.getOrDefault(key, new SoftReference<>(null)).get();
+        if (value == null) {
+            value = load(key);
+            put(key,value);
         }
-        softRef = cache.get(key);
-        if (softRef == null || softRef.get() == null) {
-            softRef = new SoftReference<>(load(key));
-            cache.put(key, softRef);
-        }
-        return softRef.get();
+        return value;
     }
 
     protected abstract V load(K key);

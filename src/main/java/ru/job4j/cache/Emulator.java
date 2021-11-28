@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Emulator {
     private final Scanner sc = new Scanner(System.in);
-    private Cache<String, String> cache;
+    private AbstractCache<String, String> cache;
 
     public static void main(String[] args) {
         Emulator emulator = new Emulator();
