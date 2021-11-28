@@ -10,12 +10,9 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.StringJoiner;
 
-
 public class DirFileCache extends AbstractCache<String, String> {
-
     private static final Logger LOG = LoggerFactory.getLogger(DirFileCache.class.getName());
     private final String cachingDir;
-//    private final Map<String, SoftReference<String>> cache = new HashMap<>();
 
     public DirFileCache(String cachingDir) {
         this.cachingDir = cachingDir;
@@ -48,7 +45,6 @@ public class DirFileCache extends AbstractCache<String, String> {
     }
 
     private class MyVisitor extends SimpleFileVisitor<Path> {
-
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
             String fileName = file.toAbsolutePath().toString();
