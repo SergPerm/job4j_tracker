@@ -16,18 +16,13 @@ public class MaxMinTest {
     private static Comparator<String> comparator;
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp() {
         attachments = Arrays.asList(
                 "Hello World",
                 "I love Java language",
                 "job4j"
         );
-        comparator = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return Integer.compare(o1.length(), o2.length());
-            }
-        };
+        comparator = Comparator.comparingInt(String::length);
     }
 
     @Test
