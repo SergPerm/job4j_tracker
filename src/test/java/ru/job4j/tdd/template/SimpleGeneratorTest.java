@@ -24,7 +24,6 @@ public class SimpleGeneratorTest {
                 Is.is(result));
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     @Ignore
     public void whenMapContainMoreKeyThenException() {
