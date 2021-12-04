@@ -10,6 +10,4 @@ public interface Cinema {
     Ticket buy(Account account, int row, int column, Calendar date);
 
     void add(Session session);
-
-    int size();
 }

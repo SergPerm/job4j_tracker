@@ -19,11 +19,4 @@ public class Cinema3D implements Cinema {
     @Override
     public void add(Session session) {
     }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-
-
 }
