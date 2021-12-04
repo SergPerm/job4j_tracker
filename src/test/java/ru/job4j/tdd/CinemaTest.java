@@ -77,7 +77,8 @@ public class CinemaTest {
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         LocalDateTime nextYear = LocalDateTime.now().plusMonths(2);
-        date.set(nextYear.getYear(), nextYear.getMonthValue(), nextYear.getDayOfMonth(), nextYear.getHour(), nextYear.getMinute());
+        date.set(nextYear.getYear(), nextYear.getMonthValue(), nextYear.getDayOfMonth(),
+                nextYear.getHour(), nextYear.getMinute());
         Ticket ticket = cinema.buy(account, 1, 1, date);
     }
 }
