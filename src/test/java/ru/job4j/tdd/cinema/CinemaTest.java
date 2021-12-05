@@ -48,6 +48,7 @@ public class CinemaTest {
         Cinema cinema = new Cinema3D();
         Session sess = new Session3D();
         cinema.add(sess);
+        cinema.add(sess);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -68,6 +69,7 @@ public class CinemaTest {
         Calendar date = Calendar.getInstance();
         date.set(2021, 12, 04, 12, 0);
         Ticket ticket = cinema.buy(account, 1, 1, date);
+        Ticket ticket2 = cinema.buy(account, 1, 1, date);
     }
 
     @Test(expected = IllegalArgumentException.class)
