@@ -5,28 +5,23 @@ package ru.job4j.solid;
  * - проверяет заказ
  * - сохраняет заказ
  * - отправляет уведомление заказчику
- * - и при этом еще и создаёт новое соединение с БД
+ * - и при этом еще и создаёт новое соединение с БД при отправлении уведомления
  *
- public class OrderProcessor {
-
-    public void process(Order order) {
-        if (order.isValid() && save(order)) {
-        sendConfirmationEmail(order);
-    }
- }
-
- // сохраняем заказ в базу данных
- private boolean save(Order order) {
-    MySqlConnection connection = new MySqlConnection("database.url");
- return true;
- }
-
- // Шлем письмо клиенту
- private void sendConfirmationEmail(Order order) {
- String name = order.getCustomerName();
- String email = order.getCustomerEmail();
- }
- }
+ * public class OrderProcessor {
+ *      public void process(Order order) {
+ *          if (order.isValid() && save(order)) {
+ *              sendConfirmationEmail(order);
+ *          }
+ *      }
+ *      private boolean save(Order order) {
+ *          MySqlConnection connection = new MySqlConnection("database.url");
+ *          return true;
+ *      }
+ *      private void sendConfirmationEmail(Order order) {
+ *          String name = order.getCustomerName();
+ *          String email = order.getCustomerEmail();
+ *      }
+ * }
  * для исправления нужно вынести методы save() и sendConfirmationEmail() в интерфейсы
  * реализовать от них классы и уже их использовать
  *
