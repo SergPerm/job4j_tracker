@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ControllQuality {
 
-    private final Storege storege;
     private static LocalDate currentDate = LocalDate.of(2021, 12, 13);
+    private final Storege storege;
 
     public ControllQuality(Storege storege) {
         this.storege = storege;
