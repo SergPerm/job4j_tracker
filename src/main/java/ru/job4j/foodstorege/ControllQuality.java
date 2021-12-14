@@ -1,7 +1,7 @@
-package ru.job4j.foodStorege;
+package ru.job4j.foodstorege;
 
-import ru.job4j.foodStorege.foods.Food;
-import ru.job4j.foodStorege.storeges.*;
+import ru.job4j.foodstorege.foods.Food;
+import ru.job4j.foodstorege.storeges.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -10,7 +10,7 @@ import java.util.List;
 public class ControllQuality {
 
     private final Storege storege;
-    private static final LocalDate CURRENT_DATE = LocalDate.of(2021, 12, 13);
+    private static LocalDate currentDate = LocalDate.of(2021, 12, 13);
 
     public ControllQuality(Storege storege) {
         this.storege = storege;
@@ -21,8 +21,10 @@ public class ControllQuality {
     }
 
     public static void control(Food food) {
-        long periodCreateToCurrentDate = ChronoUnit.DAYS.between(food.getCreateDate(), CURRENT_DATE);
-        long periodCreateToExpiry = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
+        long periodCreateToCurrentDate =
+                ChronoUnit.DAYS.between(food.getCreateDate(), currentDate);
+        long periodCreateToExpiry =
+                ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
         double percentOfFine = (double) periodCreateToCurrentDate / periodCreateToExpiry;
         ControllQuality cc = new ControllQuality(new Warehouse());
         if (percentOfFine >= 0.25 && percentOfFine < 0.75) {

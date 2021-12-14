@@ -1,4 +1,4 @@
-package ru.job4j.foodStorege.foods;
+package ru.job4j.foodstorege.foods;
 
 import java.time.LocalDate;
 

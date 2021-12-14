@@ -1,6 +1,6 @@
-package ru.job4j.foodStorege.storeges;
+package ru.job4j.foodstorege.storeges;
 
-import ru.job4j.foodStorege.foods.Food;
+import ru.job4j.foodstorege.foods.Food;
 
 public class ShopWithDiscount extends Shop {
 
