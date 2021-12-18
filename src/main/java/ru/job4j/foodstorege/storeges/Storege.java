@@ -7,7 +7,9 @@ import java.time.temporal.ChronoUnit;
 
 public interface Storege {
     void doOperation(Food food);
+
     boolean accept(Food food);
+
     default double getExpirationPercent(Food food) {
         LocalDate currentDate = LocalDate.of(2021, 12, 13);
         long periodCreateToCurrentDate =

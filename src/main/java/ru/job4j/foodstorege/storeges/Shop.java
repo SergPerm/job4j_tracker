@@ -11,7 +11,8 @@ public class Shop implements Storege {
             System.out.println(" Add " + food.getName() + " to Shop ");
         }
         if (percentOfFine >= 0.75 && percentOfFine < 1) {
-            System.out.println(" Add " + food.getName() + " to Shop with discount " + food.getDiscount());
+            System.out.println(" Add " + food.getName()
+                    + " to Shop with discount " + food.getDiscount());
         }
     }
 
