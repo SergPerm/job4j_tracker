@@ -8,4 +8,10 @@ public class Trash implements Storege {
     public void doOperation(Food food) {
         System.out.println(" Add " + food.getName() + " to Trash ");
     }
+
+    @Override
+    public boolean accept(Food food) {
+        double percentOfFine = this.getExpirationPercent(food);
+        return percentOfFine >= 1;
+    }
 }

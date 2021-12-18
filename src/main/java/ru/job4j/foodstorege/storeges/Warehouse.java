@@ -8,4 +8,10 @@ public class Warehouse implements Storege {
     public void doOperation(Food food) {
         System.out.println(" Add " + food.getName() + " to WareHouse ");
     }
+
+    @Override
+    public boolean accept(Food food) {
+        double percentOfFine = this.getExpirationPercent(food);
+        return percentOfFine >= 0 && percentOfFine < 0.25;
+    }
 }

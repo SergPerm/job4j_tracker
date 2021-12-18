@@ -4,42 +4,29 @@ import ru.job4j.foodstorege.foods.Food;
 import ru.job4j.foodstorege.storeges.*;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ControllQuality {
 
-    private static LocalDate currentDate = LocalDate.of(2021, 12, 13);
-    private final Storege storege;
+    private final List<Storege> storeges;
 
-    public ControllQuality(Storege storege) {
-        this.storege = storege;
+    public ControllQuality(List<Storege> storeges) {
+        this.storeges = storeges;
     }
 
-    public void executeStorege(Food food) {
-        storege.doOperation(food);
-    }
-
-    public static void control(Food food) {
-        long periodCreateToCurrentDate =
-                ChronoUnit.DAYS.between(food.getCreateDate(), currentDate);
-        long periodCreateToExpiry =
-                ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        double percentOfFine = (double) periodCreateToCurrentDate / periodCreateToExpiry;
-        ControllQuality cc = new ControllQuality(new Warehouse());
-        if (percentOfFine >= 0.25 && percentOfFine < 0.75) {
-            cc = new ControllQuality(new Shop());
+    public void control(Food food) {
+        for (Storege storege : storeges) {
+            if (storege.accept(food)) {
+                storege.doOperation(food);
+                break;
+            }
         }
-        if (percentOfFine >= 0.75 && percentOfFine < 1.0) {
-            cc = new ControllQuality(new ShopWithDiscount());
-        }
-        if (percentOfFine >= 1.0) {
-            cc = new ControllQuality(new Trash());
-        }
-        cc.executeStorege(food);
     }
 
     public static void main(String[] args) {
+        List<Storege> storeges = List.of(new Warehouse(),
+                new Shop(),
+                new Trash());
         List<Food> foodList = List.of(
                 new Food("apple",
                         LocalDate.of(2021, 12, 1),
@@ -62,8 +49,9 @@ public class ControllQuality {
                         100.0,
                         0.7)
         );
+        ControllQuality cq = new ControllQuality(storeges);
         for (Food food : foodList) {
-            ControllQuality.control(food);
+            cq.control(food);
         }
     }
 }
