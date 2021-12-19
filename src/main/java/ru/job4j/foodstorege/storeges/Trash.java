@@ -6,7 +6,9 @@ public class Trash implements Storege {
 
     @Override
     public void doOperation(Food food) {
-        System.out.println(" Add " + food.getName() + " to Trash ");
+        if (this.accept(food)) {
+            System.out.println(" Add " + food.getName() + " to Trash ");
+        }
     }
 
     @Override

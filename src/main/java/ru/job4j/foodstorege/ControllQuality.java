@@ -16,10 +16,7 @@ public class ControllQuality {
 
     public void control(Food food) {
         for (Storege storege : storeges) {
-            if (storege.accept(food)) {
-                storege.doOperation(food);
-                break;
-            }
+            storege.doOperation(food);
         }
     }
 

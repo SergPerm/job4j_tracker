@@ -6,7 +6,9 @@ public class Warehouse implements Storege {
 
     @Override
     public void doOperation(Food food) {
-        System.out.println(" Add " + food.getName() + " to WareHouse ");
+        if (this.accept(food)) {
+            System.out.println(" Add " + food.getName() + " to WareHouse ");
+        }
     }
 
     @Override
