@@ -1,9 +1,7 @@
 package ru.job4j.parking;
 
-import java.util.List;
-
 /**
- * инициализируем парковку
+ * инициализируем парковку через конструктор
  * проверяем возможность разместить автомобиль
  * добавляем автомобиль на парковку при возможности
  * получаем список всех автомобилей на парковке
@@ -11,13 +9,8 @@ import java.util.List;
  * удаляем автомобиль с парковки
  */
 public interface Parking {
-    void init();
 
-    boolean canParking(Automobile automobile);
-
-    Automobile add(Automobile automobile);
-
-    List<Automobile> findAll();
+    boolean parkAutomobile(Automobile automobile);
 
     Automobile findByNumber(String number);
 
