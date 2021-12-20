@@ -2,12 +2,17 @@ package ru.job4j.foodstorege.storeges;
 
 import ru.job4j.foodstorege.foods.Food;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trash implements Storege {
+
+    private final List<Food> trash = new ArrayList<>();
 
     @Override
     public void doOperation(Food food) {
         if (this.accept(food)) {
-            System.out.println(" Add " + food.getName() + " to Trash ");
+            trash.add(food);
         }
     }
 

@@ -2,18 +2,23 @@ package ru.job4j.foodstorege.storeges;
 
 import ru.job4j.foodstorege.foods.Food;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Shop implements Storege {
+
+    private final List<Food> shop = new ArrayList<>();
 
     @Override
     public void doOperation(Food food) {
         if (this.accept(food)) {
             double percentOfFine = this.getExpirationPercent(food);
             if (percentOfFine >= 0.25 && percentOfFine < 0.75) {
-                System.out.println(" Add " + food.getName() + " to Shop ");
+                shop.add(food);
             }
             if (percentOfFine >= 0.75 && percentOfFine < 1) {
-                System.out.println(" Add " + food.getName()
-                        + " to Shop with discount " + food.getDiscount());
+                food.setPrice(food.getPrice() * (1 - food.getDiscount()));
+                shop.add(food);
             }
         }
     }
