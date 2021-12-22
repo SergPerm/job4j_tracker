@@ -14,6 +14,6 @@ public interface Parking {
 
     Automobile findByNumber(String number);
 
-    boolean delete(Automobile automobile);
+    boolean delete(String number);
 }
 
