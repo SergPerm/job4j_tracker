@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public interface Storege {
-    void doOperation(Food food);
+    boolean doOperation(Food food);
 
     boolean accept(Food food);
 
     default double getExpirationPercent(Food food) {
-        LocalDate currentDate = LocalDate.of(2021, 12, 13);
+        LocalDate currentDate = LocalDate.now();
         long periodCreateToCurrentDate =
                 ChronoUnit.DAYS.between(food.getCreateDate(), currentDate);
         long periodCreateToExpiry =

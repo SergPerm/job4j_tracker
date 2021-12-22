@@ -10,10 +10,12 @@ public class Trash implements Storege {
     private final List<Food> trash = new ArrayList<>();
 
     @Override
-    public void doOperation(Food food) {
+    public boolean doOperation(Food food) {
         if (this.accept(food)) {
             trash.add(food);
+            return true;
         }
+        return false;
     }
 
     @Override

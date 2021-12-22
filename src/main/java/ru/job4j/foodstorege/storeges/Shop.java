@@ -10,7 +10,7 @@ public class Shop implements Storege {
     private final List<Food> shop = new ArrayList<>();
 
     @Override
-    public void doOperation(Food food) {
+    public boolean doOperation(Food food) {
         if (this.accept(food)) {
             double percentOfFine = this.getExpirationPercent(food);
             if (percentOfFine >= 0.25 && percentOfFine < 0.75) {
@@ -20,7 +20,9 @@ public class Shop implements Storege {
                 food.setPrice(food.getPrice() * (1 - food.getDiscount()));
                 shop.add(food);
             }
+            return true;
         }
+        return false;
     }
 
     @Override

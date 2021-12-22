@@ -10,10 +10,12 @@ public class Warehouse implements Storege {
     private final List<Food> warehouse = new ArrayList<>();
 
     @Override
-    public void doOperation(Food food) {
+    public boolean doOperation(Food food) {
         if (this.accept(food)) {
             warehouse.add(food);
+            return true;
         }
+        return false;
     }
 
     @Override
