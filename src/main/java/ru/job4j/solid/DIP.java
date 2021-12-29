@@ -55,6 +55,29 @@ package ru.job4j.solid;
  *         this.truckPlace = truckPlace;
  *         this.automobileList = automobileList;
  *     }
+ *
+ *     Класс использует переменную List<Employee> employees для хранения списка работников.
+ *     Этот вариант жёстко привязан к данной реализации. и это ошибка.
+ *
+ *     public class ReportEngine implements Report {
+ *          private final List<Employee> employees = new ArrayList<>();
+ *
+ *     Вместо этого через интерфейс Store и реализующий его класс MemStore мы уходим от
+ *     прямой связи, а необходимый вариант хранилища мы получаем через конструктор.
+ *
+ *     public class ReportEngine implements Report {
+ *
+ *          private final Store store;
+ *
+ *          public ReportEngine(Store store) {
+ *              this.store = store;
+ *           }
+ *     }
+ *
+ *     public class MemStore implements Store {
+ *
+ *          private final List<Employee> employees = new ArrayList<>();
+ *     }
  */
 
 public class DIP {
