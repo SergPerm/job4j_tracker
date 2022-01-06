@@ -5,22 +5,27 @@ import ru.job4j.foodstorege.foods.Food;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trash implements Storege {
+public class Trash implements Storage {
 
     private final List<Food> trash = new ArrayList<>();
 
     @Override
-    public boolean doOperation(Food food) {
+    public void doOperation(Food food) {
         if (this.accept(food)) {
             trash.add(food);
-            return true;
         }
-        return false;
     }
 
     @Override
     public boolean accept(Food food) {
         double percentOfFine = this.getExpirationPercent(food);
         return percentOfFine >= 1;
+    }
+
+    @Override
+    public List<Food> cleanStorage() {
+        List<Food> foodsFromTrashForResort = List.copyOf(trash);
+        trash.clear();
+        return foodsFromTrashForResort;
     }
 }

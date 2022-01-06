@@ -4,24 +4,34 @@ import ru.job4j.foodstorege.foods.Food;
 import ru.job4j.foodstorege.storeges.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControllQuality {
 
-    private final List<Storege> storeges;
+    private final List<Storage> storages;
 
-    public ControllQuality(List<Storege> storeges) {
-        this.storeges = storeges;
+    public ControllQuality(List<Storage> storages) {
+        this.storages = storages;
     }
 
     public void control(Food food) {
-        for (Storege storege : storeges) {
-            storege.doOperation(food);
+        for (Storage storage : storages) {
+            storage.doOperation(food);
+        }
+    }
+
+    public void resort(List<Food> foodList) {
+        for (Storage storage : storages) {
+            foodList.addAll(storage.cleanStorage());
+        }
+        for (Food food : foodList) {
+            control(food);
         }
     }
 
     public static void main(String[] args) {
-        List<Storege> storeges = List.of(new Warehouse(),
+        List<Storage> storages = List.of(new Warehouse(),
                 new Shop(),
                 new Trash());
         List<Food> foodList = List.of(
@@ -46,9 +56,10 @@ public class ControllQuality {
                         100.0,
                         0.7)
         );
-        ControllQuality cq = new ControllQuality(storeges);
+        ControllQuality cq = new ControllQuality(storages);
         for (Food food : foodList) {
             cq.control(food);
         }
+        cq.resort(new ArrayList<>());
     }
 }

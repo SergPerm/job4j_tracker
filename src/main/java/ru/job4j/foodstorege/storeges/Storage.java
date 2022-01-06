@@ -4,11 +4,14 @@ import ru.job4j.foodstorege.foods.Food;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
-public interface Storege {
-    boolean doOperation(Food food);
+public interface Storage {
+    void doOperation(Food food);
 
     boolean accept(Food food);
+
+    List<Food> cleanStorage() ;
 
     default double getExpirationPercent(Food food) {
         LocalDate currentDate = LocalDate.now();
