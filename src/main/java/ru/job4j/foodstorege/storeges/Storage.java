@@ -11,7 +11,7 @@ public interface Storage {
 
     boolean accept(Food food);
 
-    List<Food> cleanStorage() ;
+    List<Food> cleanStorage();
 
     default double getExpirationPercent(Food food) {
         LocalDate currentDate = LocalDate.now();
