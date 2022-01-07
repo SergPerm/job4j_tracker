@@ -21,7 +21,8 @@ public class ControllQuality {
         }
     }
 
-    public void resort(List<Food> foodList) {
+    public void resort() {
+        List<Food> foodList = new ArrayList<>();
         for (Storage storage : storages) {
             foodList.addAll(storage.cleanStorage());
         }
@@ -60,6 +61,6 @@ public class ControllQuality {
         for (Food food : foodList) {
             cq.control(food);
         }
-        cq.resort(new ArrayList<>());
+        cq.resort();
     }
 }
