@@ -17,6 +17,7 @@ public class Item {
 
     private String name;
     private LocalDateTime created = LocalDateTime.now();
+    private String description;
 
     public Item() { }
 
@@ -27,6 +28,11 @@ public class Item {
     public Item(String name, LocalDateTime created) {
         this.name = name;
         this.created = created;
+    }
+
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public int getId() {
@@ -53,9 +59,18 @@ public class Item {
         return created;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
+        return String.format("id: %s, name: %s, created: %s, description : %s",
+                id, name, FORMATTER.format(created), description);
     }
 
     @Override
@@ -69,11 +84,12 @@ public class Item {
         Item item = (Item) o;
         return id == item.id
                 && name.equals(item.name)
-                && created.withNano(0).equals(item.created.withNano(0));
+                && created.withNano(0).equals(item.created.withNano(0))
+                && description.equals(item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id, name, created, description);
     }
 }
